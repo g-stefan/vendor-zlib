@@ -1,0 +1,22 @@
+--lib libz
+--no-default-source
+--src-c=source/adler32.c
+--src-c=source/compress.c
+--src-c=source/crc32.c
+--src-c=source/uncompr.c
+--src-c=source/deflate.c
+--src-c=source/trees.c
+--src-c=source/zutil.c
+--src-c=source/inflate.c
+--src-c=source/infback.c
+--src-c=source/inftrees.c
+--src-c=source/inffast.c
+--src-c=source/gzread.c
+--src-c=source/gzwrite.c
+--src-c=source/gzlib.c
+--src-c=source/gzclose.c
+--install-include-direct
+--install-project=zlib
+--install-dev
+--no-version
+--dependency-license=zlib

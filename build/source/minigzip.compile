@@ -1,0 +1,8 @@
+--exe minigzip
+--no-default-source
+--src-c=source/test/minigzip.c
+--use-lib=:libz.static
+--install-project=zlib
+--install-dev
+--no-version
+--dependency-license=zlib
