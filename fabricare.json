@@ -1,0 +1,9 @@
+{
+	"project": {
+		"name" : "zlib",
+		"type" : "xyo-vendor",
+		"SPDX-License-Identifier": "Zlib",
+		"sourceLink" : "https://www.zlib.net/",
+		"version" : "1.2.13"
+	}
+}
