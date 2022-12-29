@@ -4,6 +4,9 @@
 		"type" : "xyo-cpp",
 		"SPDX-License-Identifier": "Zlib",
 		"sourceLink" : "https://www.zlib.net/",
-		"version" : "1.2.13"
+		"version" : "1.2.13",
+		"hasRelease" : true,
+		"noVersion" : true,
+		"githubRelease" : true
 	}
 }
