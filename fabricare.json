@@ -1,13 +1,18 @@
 {
-	"project": {
-		"name" : "zlib",
+	"solution": {
+		"name" : "vendor-zlib",
 		"type" : "xyo-cpp",
-		"SPDX-License-Identifier": "Zlib",
-		"sourceLink" : "https://www.zlib.net/",
-		"version" : "1.2.13",
-		"hasRelease" : true,
-		"noVersion" : true,
-		"githubRelease" : true,
-		"githubRepository" : "vendor-zlib"
+		"projects": [
+			{
+				"name" : "zlib",
+				"SPDX-License-Identifier": "Zlib",
+				"sourceLink" : "https://www.zlib.net/",
+				"version" : "1.2.13",
+				"noVersion" : true
+			}
+		],
+		"releaseName" : "zlib",
+		"hasGithub" : true
 	}
 }
+
