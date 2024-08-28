@@ -22,28 +22,28 @@ Shell.mkdirRecursivelyIfNotExists("output/include");
 Shell.copyFile("source/zlib.h", "output/include/zlib.h");
 Shell.copyFile("source/zconf.h", "output/include/zconf.h");
 
-global.xyoCCExtra = function() {
+global.xyoCCExtra = function () {
 	arguments.push(
 
-	    "--inc=output/include",
-	    "--use-lib-path=output/lib",
-	    "--rc-inc=output/include",
+		"--inc=output/include",
+		"--use-lib-path=output/lib",
+		"--rc-inc=output/include",
 
-	    "--inc=" + pathRepository + "/include",
-	    "--use-lib-path=" + pathRepository + "/lib",
-	    "--rc-inc=" + pathRepository + "/include"
+		"--inc=" + pathRepository + "/include",
+		"--use-lib-path=" + pathRepository + "/lib",
+		"--rc-inc=" + pathRepository + "/include"
 
 	);
 	return arguments;
 };
 
 var compileProject = {
-	"project" : "libz",
-	"includePath" : [
+	"project": "libz",
+	"includePath": [
 		"output/include",
 		"source",
 	],
-	"cSource" : [
+	"cSource": [
 		"source/adler32.c",
 		"source/compress.c",
 		"source/crc32.c",
@@ -60,70 +60,74 @@ var compileProject = {
 		"source/gzlib.c",
 		"source/gzclose.c"
 	],
-	"linkerDefinitionsFile" : "source/win32/zlib.def",
-	"resources" : {
-		"includePath" : [
+	"linkerDefinitionsFile": "source/win32/zlib.def",
+	"resources": {
+		"includePath": [
 			"source"
 		],
-		"rcSource" : [
+		"rcSource": [
 			"source/win32/zlib1.rc"
 		]
 	}
 };
 
 Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--lib", "--output-lib-path=output/lib", "--crt-static")));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--dll", "--output-bin-path=output/bin", "--output-lib-path=output/lib")));
+if (Fabricare.isStatic()) {
+	exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--lib", "--output-lib-path=output/lib")));
+};
+if (Fabricare.isDynamic()) {
+	exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--dll", "--output-bin-path=output/bin", "--output-lib-path=output/lib")));
+};
 Shell.copyFile("output/lib/libz.lib", "output/lib/zlib.lib");
 Shell.copyFile("output/lib/libz.lib", "output/lib/zdll.lib");
 
 var compileProject = {
-	"project" : "minigzip",
-	"includePath" : [
+	"project": "minigzip",
+	"includePath": [
 		"output/include",
 		"source"
 	],
-	"cSource" : [ "source/test/minigzip.c" ],
-	"library" : [ "libz.static" ]
+	"cSource": ["source/test/minigzip.c"],
+	"library": ["libz"]
 };
 
 Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin", "--crt-static")));
+exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin")));
 
 var compileProject = {
-	"project" : "miniunz",
-	"includePath" : [
+	"project": "miniunz",
+	"includePath": [
 		"output/include",
 		"source",
 		"source/contrib/minizip"
 	],
-	"cSource" : [
+	"cSource": [
 		"source/contrib/minizip/miniunz.c",
 		"source/contrib/minizip/unzip.c",
 		"source/contrib/minizip/ioapi.c",
 		"source/contrib/minizip/iowin32.c"
 	],
-	"library" : [ "libz.static" ]
+	"library": ["libz"]
 };
 
 Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin", "--crt-static")));
+exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin")));
 
 var compileProject = {
-	"project" : "minizip",
-	"includePath" : [
+	"project": "minizip",
+	"includePath": [
 		"output/include",
 		"source",
 		"source/contrib/minizip"
 	],
-	"cSource" : [
+	"cSource": [
 		"source/contrib/minizip/minizip.c",
 		"source/contrib/minizip/zip.c",
 		"source/contrib/minizip/ioapi.c",
 		"source/contrib/minizip/iowin32.c"
 	],
-	"library" : [ "libz.static" ]
+	"library": ["libz"]
 };
 
 Shell.filePutContents("temp/" + compileProject.project + ".compile.json", JSON.encodeWithIndentation(compileProject));
-exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin", "--crt-static")));
+exitIf(xyoCC.apply(null, xyoCCExtra("@temp/" + compileProject.project + ".compile.json", "--exe", "--output-bin-path=output/bin")));
