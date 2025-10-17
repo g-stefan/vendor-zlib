@@ -35,7 +35,7 @@ Shell.removeFile("archive/" + Project.vendor + ".7z");
 
 // Source
 runInPath("archive", function() {
-	webLink = "https://zlib.net/zlib13.zip";
+	webLink = "https://zlib.net/zlib131.zip";
 	if (!Shell.fileExists(Project.vendor + ".zip")) {
 		exitIf(Shell.system("curl --insecure --location " + webLink + " --output " + Project.vendor + ".zip"));
 	};
