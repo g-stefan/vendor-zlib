@@ -1,6 +1,5 @@
 {
 	"solution": {
-		"namespace" : "xyo",
 		"name" : "vendor-zlib",
 		"type" : "xyo-cpp",
 		"projects": [
